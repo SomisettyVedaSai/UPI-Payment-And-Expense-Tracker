@@ -1,87 +1,95 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* sucess.css - Hyper-Clean Status View */
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background: var(--dark-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #9ad89c;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .success-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    padding: 60px 40px;
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--card-radius);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    transition: all 0.3s ease-in-out;
+}
+
+.animation-container {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.checkmark-animation svg {
+    filter: drop-shadow(0 10px 15px rgba(0, 128, 0, 0.2));
+}
+
+.checkmark-animation circle {
+    stroke: #4BB543;
+    stroke-dasharray: 302;
+    stroke-dashoffset: 302;
+    animation: circleScale 0.6s ease-out forwards;
+}
+
+.checkmark-animation path {
+    stroke: #4BB543;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmarkScale 0.4s 0.6s ease-out forwards;
+}
+
+@keyframes circleScale {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkmarkScale {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 h1 {
-    font-size: 24px;
-    color: #4CAF50;
-    margin-top: 20px;
-    animation: fadeIn 1s ease-in-out;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
 }
 
 p {
-    font-size: 16px;
-    color: #333;
-    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
 }
 
 .back-button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    padding: 16px 40px;
+    background: var(--primary-gradient);
+    background-size: 200% auto;
     color: white;
+    font-size: 1rem;
+    font-weight: 700;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    border-radius: var(--input-radius);
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(67, 100, 247, 0.3);
 }
 
 .back-button:hover {
-    background-color: #45a049;
-}
-
-/* Animation for checkmark */
-.checkmark-animation {
-    margin: 0 auto;
-    animation: checkmark 1.5s ease-in-out forwards;
-}
-
-@keyframes checkmark {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Animation for fadeIn */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    background-position: right center;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(67, 100, 247, 0.5);
 }

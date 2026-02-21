@@ -1,155 +1,175 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    
-}
+/* main.css - Hyper-Clean Aesthetic */
 
 .outerdiv {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5;
-    background-color:lightblue;
+    background: var(--dark-gradient);
+    padding: 40px 20px;
 }
+
 .container {
-    background-color: #fff;
-    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    padding: 50px 40px;
     width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    border: 1px solid #cce7ff; /* Light blue border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 480px;
+    border-radius: var(--card-radius);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    animation: fadeInScale 0.6s ease-out;
 }
-.container h2 {
+
+h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
 }
+
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 24px;
 }
+
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
 }
-.form-group select,
+
 .form-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--input-radius);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    background: rgba(248, 249, 250, 0.8);
+    color: var(--text-main);
 }
-.form-group input[type="number"] {
-    -moz-appearance: textfield;
+
+.form-group input:focus {
+    border-color: #4364F7;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(67, 100, 247, 0.15);
+    transform: translateY(-1px);
+    outline: none;
 }
-.form-group input[type="number"]::-webkit-outer-spin-button,
-.form-group input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
 .generate-otp {
-    font-size: 0.9em;
-    color: #007bff;
+    font-size: 0.85rem;
+    color: #4364F7;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     display: inline-block;
-    margin-top: 5px;
-}
-.generate-otp:hover {
-    color: #0056b3;
-}
-.or-scan {
-    text-align: center;
     margin-top: 10px;
-    font-size: 0.9em;
-    color: #333;
+    font-weight: 600;
+    transition: var(--transition-smooth);
 }
-.scanner-symbol {
-    display: block;
-    font-size: 24px;
-    text-align: center;
-    cursor: pointer;
-    margin-top: 5px;
-}
-.scanner-symbol:hover {
-    color: #0056b3;
-}
-.pay-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
-}
-.pay-button:hover
- {
-    background-color: #45a049;
-}
-textarea
 
-textarea::placeholder
-{
-    padding: 8.5px;
+.generate-otp:hover {
+    color: #0052D4;
+    text-decoration: underline;
+}
 
-}
-.otp-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #073f14;
-    color: #b2e2bd;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
 .scanner-container {
     display: flex;
-    justify-content: center; 
-    align-items: center;     
-    margin-top: 10px;        
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 30px;
+    padding: 20px;
+    background: rgba(67, 100, 247, 0.05);
+    border-radius: var(--input-radius);
+    border: 1px dashed rgba(67, 100, 247, 0.2);
 }
 
 .scanner-symbol {
-    font-size: xx-large;    
+    font-size: 3.5rem;
     cursor: pointer;
-    transition: color 0.3s ease;
+    color: #4364F7;
+    transition: var(--transition-smooth);
 }
 
+.scanner-symbol:hover {
+    color: #0052D4;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.pay-button {
+    width: 100%;
+    padding: 18px;
+    background: var(--primary-gradient);
+    background-size: 200% auto;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--input-radius);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 20px rgba(67, 100, 247, 0.3);
+}
+
+.pay-button:hover {
+    background-position: right center;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(67, 100, 247, 0.5);
+}
+
+/* Logout link refine */
 .logout-link {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    text-align: center;
-    background-color: rgb(32, 102, 102);
-    padding: 10px 15px;
-    border-radius: 5px;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 12px;
     text-decoration: none;
-    font-weight: bold;
-    color: black;
+    font-weight: 700;
+    color: #fff;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    font-size: small;
-    color:#fff;
-}
-
-.logout-link i {
-    font-size: 19px; 
+    gap: 10px;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1000;
 }
 
 .logout-link:hover {
-    background-color: #66ccff;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.otp-message {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: var(--text-main);
+    padding: 18px 36px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    border-left: 6px solid #4364F7;
+    z-index: 2000;
+}
+
+.otp-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
 }

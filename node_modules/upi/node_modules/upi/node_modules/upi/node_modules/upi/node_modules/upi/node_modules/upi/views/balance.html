@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Success</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/balance.css">
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="animation-container">
+            <div class="checkmark-animation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" stroke="green" stroke-width="4" fill="none" />
+                    <path d="M35 50 L45 60 L65 40" stroke="green" stroke-width="4" fill="none" />
+                </svg>
+            </div>
+        </div>
+        <h1>Balance Fetched Successful!</h1>
+        <br>
+        <h3 id="balance-display">Loading...</h3>
+        <a href="/pay/main" class="back-button">Go to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/pay/main/data');
+                const data = await response.json();
+
+                if (data.deposit !== undefined) {
+                    document.getElementById('balance-display').innerText = `₹${data.deposit}`;
+                } else {
+                    document.getElementById('balance-display').innerText = 'Error fetching balance';
+                }
+            } catch (error) {
+                document.getElementById('balance-display').innerText = 'Unable to load balance';
+            }
+        });
+    </script>
+</body>
+
+</html>

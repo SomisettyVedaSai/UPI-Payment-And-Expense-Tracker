@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Details</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/transaction.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<div class="outerdiv">
+    <a href="/pay/main" class="back-link">
+        <i class="material-icons">arrow_back</i>
+        Dashboard
+    </a>
+    <div class="container">
+        <h2>Transaction History</h2>
+        <div id="transaction-container">
+            <div class="loading">Fetching records...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const container = document.getElementById('transaction-container');
+
+        try {
+            const response = await fetch('/pay/main/data');
+            const data = await response.json();
+
+            if (data.transactions && data.transactions.length > 0) {
+                let tableHTML = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ITEMS</th>
+                                    <th>AMOUNT</th>
+                                    <th>TRANSACTION TIME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                data.transactions.forEach(transaction => {
+                    const date = new Date(transaction.date);
+                    const formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+                    tableHTML += `
+                            <tr>
+                                <td>${transaction.autofill}</td>
+                                <td>${transaction.amount}</td>
+                                <td>${formattedDate}</td>
+                            </tr>
+                        `;
+                });
+
+                tableHTML += `
+                            </tbody>
+                        </table>
+                    `;
+                container.innerHTML = tableHTML;
+            } else {
+                container.innerHTML = '<div class="no-history">No transaction history</div>';
+            }
+        } catch (error) {
+            container.innerHTML = '<div class="no-history">Error loading transactions.</div>';
+        }
+    });
+</script>
+</body>
+
+</html>

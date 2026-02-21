@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Transactions</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="background-color: #000000;">
+    <h1 style="text-align: center;color: white; text-decoration: underline;  ">Yearly Transactions</h1>
+    
+    <div id="id2">
+        <canvas id="myChart" style="background-color: #000000; height: 700px;"></canvas>
+    </div>
+
+    <script>
+      const Users = <%- JSON.stringify(User)%>;  
+      if(Users[0])
+    {
+      const set = new Set();  
+      const set1 = new Set();  
+      const arr = [];    
+      const date2=new Date();     
+      Users.forEach(item => {
+          const date = new Date(item.date);  
+          let month =date.getMonth() + 1;
+          if(month==1 && month && date2.getFullYear()==date.getFullYear())
+          {
+          set.add("January"); 
+          set1.add(month);
+         
+          }
+          else if(month==2 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("February"); 
+            set1.add(month);
+          }
+          else if(month==3 && date2.getFullYear()==date.getFullYear() )
+          {
+            set.add("March"); 
+            set1.add(month);
+          }
+          else if(month==4 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("April"); 
+            set1.add(month);
+          }
+          else if(month==5 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("May"); 
+            set1.add(month);
+          }
+          else if(month==6 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("June"); 
+            set1.add(month);
+          }
+          else if(month==7 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("July"); 
+            set1.add(month);
+          }
+          else if(month==8 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("August"); 
+            set1.add(month);
+          }
+          else if(month==9 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("September"); 
+            set1.add(month);
+          }
+          else if(month==10 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("October"); 
+            set1.add(month);
+          }
+          else if(month==11 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("November"); 
+            set1.add(month);
+          }
+          else if(month==12 && date2.getFullYear()==date.getFullYear())
+          {
+            set.add("December");
+            set1.add(month);
+          }
+
+      });
+
+      set1.forEach(month => {
+        console.log(month)
+          let sum = 0;
+          Users.forEach(user => {
+              const date = new Date(user.date);  
+              if (date.getMonth() + 1 === month &&date2.getFullYear()==date.getFullYear()) {
+                  sum += user.amount;  
+                 
+              }
+    
+          });
+          
+          arr.push(sum); 
+
+      });
+      console.log(arr)
+
+      const colors = [
+          'rgba(255, 99, 132, 0.6)', 
+          'rgba(54, 162, 235, 0.6)', 
+          'rgba(255, 206, 86, 0.6)', 
+          'rgba(75, 192, 192, 0.6)', 
+          'rgba(153, 102, 255, 0.6)', 
+          'rgba(255, 159, 64, 0.6)', 
+          'rgba(231, 76, 60, 0.6)', 
+          'rgba(52, 152, 219, 0.6)', 
+          'rgba(241, 196, 15, 0.6)', 
+          'rgba(46, 204, 113, 0.6)'  
+      ];
+
+      const barColors = Array.from(set).map((month, index) => {
+          return colors[index % colors.length];
+      });
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: Array.from(set),  
+              datasets: [{
+                  label: 'Total Amount',
+                  data: arr, 
+                  borderWidth: 1,
+                  backgroundColor: barColors, 
+                  borderColor: colors,
+              }]
+          },
+          options: {
+            maintainAspectRatio: false,
+              layout: {
+                  padding: {
+                      top: 20,
+                      right: 20,
+                      bottom: 20,
+                      left: 20
+                  }
+              },
+              responsive: true,
+              
+              backgroundColor: '#f4f4f4',
+
+              scales: {
+                  x: {
+                     
+                      ticks: {
+                          color: 'white', 
+                      },
+                      title: {
+                          color: 'white', 
+                      }
+                  },
+                  y: {
+                      grid: {
+                          color: 'rgba(255, 255, 255, 0.2)', 
+                      },
+                      ticks: {
+                          color: 'white', 
+                      },
+                      title: {
+                          color: 'white',
+                      }
+                  }
+              },
+
+              elements: {
+                  line: {
+                      borderColor: 'white' 
+                  },
+                  arc: {
+                      borderColor: 'white'
+                  }
+              },
+              
+              plugins: {
+                  legend: {
+                      labels: {
+                          color: 'white' 
+                      }
+                  }
+              },
+          }
+      });
+    }
+    else
+    {
+      document.getElementById("id2").innerHTML = "No Data Found";  
+        document.getElementById("id2").style.color="white";
+        document.getElementById("id2").style.textAlign="center";
+        document.getElementById("id2").style.marginTop="300px"
+    }
+    </script>
+</body>
+</html>
